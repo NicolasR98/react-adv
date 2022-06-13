@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {
   BrowserRouter, Routes, Route, NavLink, Navigate,
 } from 'react-router-dom';
@@ -9,12 +10,13 @@ export const Navigation = () => {
   const [homePage] = routes;
 
   return (
-    <BrowserRouter>
-      <div className="main-layout">
-        <nav>
-          <img src={logo} alt="React Logo" />
-          <ul>
-            {
+    <Suspense fallback={null}>
+      <BrowserRouter>
+        <div className="main-layout">
+          <nav>
+            <img src={logo} alt="React Logo" />
+            <ul>
+              {
                 routes.map(({ name, to }) => (
                   <li key={to}>
                     <NavLink
@@ -26,11 +28,11 @@ export const Navigation = () => {
                   </li>
                 ))
             }
-          </ul>
-        </nav>
+            </ul>
+          </nav>
 
-        <Routes>
-          {
+          <Routes>
+            {
             routes.map(({ path, Component }) => (
               <Route
                 path={path}
@@ -39,10 +41,11 @@ export const Navigation = () => {
               />
             ))
           }
-          <Route path="/*" element={<Navigate to={homePage.to} replace />} />
-        </Routes>
+            <Route path="/*" element={<Navigate to={homePage.to} replace />} />
+          </Routes>
 
-      </div>
-    </BrowserRouter>
+        </div>
+      </BrowserRouter>
+    </Suspense>
   );
 };

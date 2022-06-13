@@ -1,30 +1,36 @@
 /* eslint-disable no-undef */
-import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/views';
+import { lazy, LazyExoticComponent } from 'react';
+// import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/views';
 
+type JSXComponent = () => JSX.Element;
 interface Route {
-    to: string,
-    path: string,
-    name: string,
-    Component: () => JSX.Element,
+    to: string;
+    path: string;
+    name: string;
+    Component: LazyExoticComponent<JSXComponent> | JSXComponent;
 }
+
+const Lazy1 = lazy(() => import('../01-lazyload/views/LazyPage1'));
+const Lazy2 = lazy(() => import('../01-lazyload/views/LazyPage2'));
+const Lazy3 = lazy(() => import('../01-lazyload/views/LazyPage3'));
 
 export const routes: Route[] = [
   {
     to: '/lazy1',
     path: '/lazy1',
     name: 'Lazy-1',
-    Component: LazyPage1,
+    Component: Lazy1,
   },
   {
     to: '/lazy2',
     path: '/lazy2',
     name: 'Lazy-2',
-    Component: LazyPage2,
+    Component: Lazy2,
   },
   {
     to: '/lazy3',
     path: '/lazy3',
     name: 'Lazy-3',
-    Component: LazyPage3,
+    Component: Lazy3,
   },
 ];
