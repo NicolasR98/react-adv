@@ -1,6 +1,7 @@
+/* eslint-disable max-len */
 /* eslint-disable no-undef */
 import { lazy, LazyExoticComponent } from 'react';
-// import { LazyPage1, LazyPage2, LazyPage3 } from '../01-lazyload/views';
+import { NoLazy } from '../01-lazyload/views';
 
 type JSXComponent = () => JSX.Element;
 interface Route {
@@ -13,6 +14,7 @@ interface Route {
 const Lazy1 = lazy(() => import(/* webpackChunkName: "LazyPage1" */'../01-lazyload/views/LazyPage1'));
 const Lazy2 = lazy(() => import(/* webpackChunkName: "LazyPage2" */'../01-lazyload/views/LazyPage2'));
 const Lazy3 = lazy(() => import(/* webpackChunkName: "LazyPage3" */'../01-lazyload/views/LazyPage3'));
+const LazyLayout = lazy(() => import(/* webpackChunkName: "LazyLayout" */'../01-lazyload/layout/LazyLayout'));
 
 export const routes: Route[] = [
   {
@@ -32,5 +34,17 @@ export const routes: Route[] = [
     path: '/lazy3',
     name: 'Lazy-3',
     Component: Lazy3,
+  },
+  {
+    path: '/lazylayout/*',
+    to: '/lazylayout/',
+    name: 'lazylayout - Dashboard',
+    Component: LazyLayout,
+  },
+  {
+    to: '/no-lazy',
+    path: '/no-lazy',
+    name: 'No-lazy',
+    Component: NoLazy,
   },
 ];

@@ -27,20 +27,20 @@ export const Navigation = () => {
                     </NavLink>
                   </li>
                 ))
-            }
+              }
             </ul>
           </nav>
 
           <Routes>
             {
-            routes.map(({ path, Component }) => (
-              <Route
-                path={path}
-                element={<Component />}
-                key={path}
-              />
-            ))
-          }
+              routes.map(({ path, Component }) => (
+                <Route
+                  path={path}
+                  element={<Component />}
+                  key={path}
+                />
+              ))
+            }
             <Route path="/*" element={<Navigate to={homePage.to} replace />} />
           </Routes>
 
