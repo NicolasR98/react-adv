@@ -10,7 +10,7 @@ export const Navigation = () => {
   const [homePage] = routes;
 
   return (
-    <Suspense fallback={null}>
+    <Suspense fallback={<span>Loading...</span>}>
       <BrowserRouter>
         <div className="main-layout">
           <nav>
